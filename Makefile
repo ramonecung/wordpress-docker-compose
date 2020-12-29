@@ -7,7 +7,7 @@ healthcheck:
 down:
 	docker-compose down
 
-install: start healthcheck
+install: start healthcheck configure healthcheck
 
 configure:
 	docker-compose -f docker-compose.yml -f wp-auto-config.yml run --rm wp-auto-config
@@ -19,5 +19,5 @@ clean: down
 	@echo "💥 Removing related folders/files..."
 	@rm -rf  mysql/* wordpress/*
 
-reset: clean
+reset: clean install 
 
